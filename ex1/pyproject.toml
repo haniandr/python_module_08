@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "matrix"
+version = "0.1.0"
+description = "Matrix data analysis project"
+authors = ["Cathya <cathyaandrianjaka@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.3.0"
+pandas = "^2.3.0"
+matplotlib = "^3.10.0"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
