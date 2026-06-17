@@ -5,31 +5,30 @@ from importlib.metadata import version
 
 def check_dependancies() -> None:
     dependance: dict[str, str] = {
-            "numpy": "Data manipulation ready",
-            "pandas": "Numerical computation ready",
-            "matplotlib": "Visualization ready"
+            "numpy": "Data manipulation",
+            "pandas": "Numerical computation",
+            "matplotlib": "Visualization"
             }
 
     print("Checking dependances:")
 
     for pkg in dependance.keys():
         if find_spec(pkg):
-            print(f"[OK] {pkg} ({version(pkg)}) - {dependance[pkg]}")
+            print(f"[OK] {pkg} ({version(pkg)}) - {dependance[pkg]} ready")
         else:
-            print(f"[MISSING] {pkg}")
+            print(f"[MISSING] {pkg} - {dependance[pkg]}")
 
 
 def loading() -> None:
     try:
         import numpy as np
         import pandas as pd
-        from pandas import DataFrame
         import matplotlib.pyplot as plt
     except ImportError as e:
         print(f"Error: {e}")
         exit(1)
 
-    def generate_matrix_data(seed: int | None) -> DataFrame:
+    def generate_matrix_data(seed: int | None) -> pd.DataFrame:
         if seed is not None:
             np.random.seed(seed)
         age = np.random.randint(0, 101, size=1000)
@@ -43,10 +42,6 @@ def loading() -> None:
             })
 
     filename = "matrix_analyzis.png"
-
-    print("\nLOADING STATUS: Loading program...\n")
-
-    check_dependancies()
   
     print("Analyzing Matrix Data ...")
     print("Processing 1000 data points...")
@@ -56,7 +51,7 @@ def loading() -> None:
 
     df = generate_matrix_data(42)
 
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(6, 5))
     plt.scatter(
             df["age"],
             df["temperature"],
@@ -73,4 +68,6 @@ def loading() -> None:
 
 
 if __name__ == "__main__":
+    print("\nLOADING STATUS: Loading programs...\n")
+    check_dependancies()
     loading()
