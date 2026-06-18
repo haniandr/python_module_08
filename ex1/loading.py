@@ -2,6 +2,20 @@
 from importlib.util import find_spec
 from importlib.metadata import version
 
+def print_difference() -> None:
+    print(
+    "For pip:"
+    " For installing packages:\n"
+    "  run pip install <package ...>"
+    " Register the installed packages:"
+    "\n  pip freeze > requirements.txt\n"
+    "\nTO INSTALL POETRY: pip install poetry\n"
+    "\nFor poetry:"
+    "\n For installing packages:\n"
+    "  run poetry install\n"
+    "to install all the packages registered"
+    " in the file <pyproject.toml>"
+    )
 
 def check_dependancies() -> None:
     dependance: dict[str, str] = {
@@ -68,6 +82,8 @@ def loading() -> None:
 
 
 if __name__ == "__main__":
+    print("DIFFERENCE BETWEEN PIP AND POETRY:")
+    print_difference()
     print("\nLOADING STATUS: Loading programs...\n")
     check_dependancies()
     loading()
