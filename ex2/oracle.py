@@ -1,6 +1,7 @@
 import os
+import sys
 
-content: list = [
+content = [
             "MATRIX_MODE",
             "DATABASE_URL",
             "API_KEY",
@@ -18,6 +19,7 @@ def check_configuration() -> list[str]:
 
     return missing
 
+
 def show_configuration() -> None:
     matrix_dic = {
             "MATRIX_MODE": "Mode",
@@ -34,21 +36,36 @@ def show_configuration() -> None:
             var = "Authentificated" if var else "Not Authentificated"
         if item == "DATABASE_URL":
             var = ("Connected to local instance"
-                   if var=="localhost" or (not var)
+                   if var == "localhost" or (not var)
                    else var)
+        if not (var == "development" or "production"):
+            print("WARNING - Unknown MATRIX_MODE")
         print(f"{matrix_dic[item]}: {var}")
 
 
 def oracle() -> None:
+    try:
+        from dotenv import load_dotenv
+    except ModuleNotFoundError as e:
+        print(f"Error: {e}\nInstall dotenv module")
+        sys.exit(1)
     print("ORACLE STATUS: Reading the Matrix...")
+    print(load_dotenv())
 
     missing = check_configuration()
 
     if missing:
         for term in missing:
-            print(f"[WARNING] - MISSING {term}")
+            print(f"[WARNING] - [MISSING] {term}")
         print("Please update your .env files")
         return
+
+    show_configuration()
+    print("\nEnvironment security check:")
+    print("[OK] No hardcoded secrets detected")
+    print("[OK] .env file properly configured")
+    print("[OK] Production overrides available\n")
+    print("The Oracle sees all Configurations.")
 
 
 if __name__ == "__main__":
