@@ -32,23 +32,28 @@ def show_configuration() -> None:
     print("Configuration loaded:\n")
     for item in content:
         var: str | None = os.environ.get(item)
+        if item == "MATRIX_MODE":
+            if var != "development" and var != "production":
+                print("WARNING - Unknown MATRIX_MODE")
+
         if item == "API_KEY":
             var = "Authentificated" if var else "Not Authentificated"
+
         if item == "DATABASE_URL":
             var = ("Connected to local instance"
                    if var == "localhost" or (not var)
                    else var)
-        if var != "development" and var != "production":
-            print("WARNING - Unknown MATRIX_MODE")
+
         print(f"{matrix_dic[item]}: {var}")
 
 
 def oracle() -> None:
     try:
         from dotenv import load_dotenv
-    except ModuleNotFoundError as e:
+    except ImportError as e:
         print(f"Error: {e}\nInstall dotenv module")
         sys.exit(1)
+
     print("ORACLE STATUS: Reading the Matrix...")
     load_dotenv()
 
