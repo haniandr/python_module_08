@@ -40,8 +40,8 @@ def show_configuration() -> None:
             var = "Authentificated" if var else "Not Authentificated"
 
         if item == "DATABASE_URL":
-            var = ("Connected to local instance"
-                   if var == "localhost" else var)
+            if var and "localhost" in var:
+                var = "Connected to local instance"
 
         print(f"{matrix_dic[item]}: {var}")
 
