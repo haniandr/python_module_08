@@ -1,7 +1,9 @@
 import os
 import sys
 
-content = [
+
+def check_configuration() -> list[str]:
+    content = [
             "MATRIX_MODE",
             "DATABASE_URL",
             "API_KEY",
@@ -9,8 +11,6 @@ content = [
             "ZION_ENDPOINT"
          ]
 
-
-def check_configuration() -> list[str]:
     missing = []
 
     for item in content:
@@ -30,7 +30,7 @@ def show_configuration() -> None:
             }
 
     print("Configuration loaded:\n")
-    for item in content:
+    for item in matrix_dic.keys():
         var: str | None = os.environ.get(item)
         if item == "MATRIX_MODE":
             if var != "development" and var != "production":
