@@ -41,8 +41,7 @@ def show_configuration() -> None:
 
         if item == "DATABASE_URL":
             var = ("Connected to local instance"
-                   if var == "localhost" or (not var)
-                   else var)
+                   if var == "localhost" else var)
 
         print(f"{matrix_dic[item]}: {var}")
 
