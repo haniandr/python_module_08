@@ -38,7 +38,7 @@ def show_configuration() -> None:
             var = ("Connected to local instance"
                    if var == "localhost" or (not var)
                    else var)
-        if not (var == "development" or "production"):
+        if var != "development" or var != "production":
             print("WARNING - Unknown MATRIX_MODE")
         print(f"{matrix_dic[item]}: {var}")
 
