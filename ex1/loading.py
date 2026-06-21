@@ -2,20 +2,22 @@
 from importlib.util import find_spec
 from importlib.metadata import version
 
+
 def print_difference() -> None:
     print(
-    "For pip:"
-    " For installing packages:\n"
-    "  run pip install <package ...>"
-    " Register the installed packages:"
-    "\n  pip freeze > requirements.txt\n"
-    "\nTO INSTALL POETRY: pip install poetry\n"
-    "\nFor poetry:"
-    "\n For installing packages:\n"
-    "  run poetry install\n"
-    "to install all the packages registered"
-    " in the file <pyproject.toml>"
+        "For pip:"
+        " For installing packages:\n"
+        "  run pip install <package ...>"
+        " Register the installed packages:"
+        "\n  pip freeze > requirements.txt\n"
+        "\nTO INSTALL POETRY: pip install poetry\n"
+        "\nFor poetry:"
+        "\n For installing packages:\n"
+        "  run poetry install\n"
+        "to install all the packages registered"
+        " in the file <pyproject.toml>"
     )
+
 
 def check_dependancies() -> None:
     dependance: dict[str, str] = {
@@ -51,12 +53,12 @@ def loading() -> None:
 
         return pd.DataFrame({
                 "age": age,
-                "temperature": temp, 
+                "temperature": temp,
                 "color": color
             })
 
     filename = "matrix_analyzis.png"
-  
+
     print("Analyzing Matrix Data ...")
     print("Processing 1000 data points...")
     print("Generating visualisation...\n")
