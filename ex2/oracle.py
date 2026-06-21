@@ -11,7 +11,7 @@ def check_configuration() -> list[str]:
             "ZION_ENDPOINT"
          ]
 
-    missing = []
+    missing: list[str] = []
 
     for item in content:
         if not os.getenv(item):
@@ -30,7 +30,7 @@ def show_configuration() -> None:
             }
 
     print("Configuration loaded:\n")
-    for item in matrix_dic.keys():
+    for item in matrix_dic:
         var: str | None = os.environ.get(item)
         if item == "MATRIX_MODE":
             if var != "development" and var != "production":
