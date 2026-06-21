@@ -50,7 +50,7 @@ def oracle() -> None:
         print(f"Error: {e}\nInstall dotenv module")
         sys.exit(1)
     print("ORACLE STATUS: Reading the Matrix...")
-    print(load_dotenv())
+    load_dotenv()
 
     missing = check_configuration()
 
